@@ -1,0 +1,13 @@
+{
+  "name": "client-placeholder",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently 'vite' \"nodemon ../server.js\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.0",
+    "vite": "^5.4.0"
+  }
+}
