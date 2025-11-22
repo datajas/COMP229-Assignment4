@@ -1,7 +1,7 @@
 /**
- * Assignment 2 - Portfolio API (Node.js, Express, MongoDB)
+ * Assignment 3 - Portfolio API (Node.js, Express, MongoDB)
  * Author: Jasmine Sidhu
- * Date: 2025-10-31
+ * Date: 2025-11-21
  */
 import express from 'express';
 import dotenv from 'dotenv';

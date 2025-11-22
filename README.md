@@ -1,67 +1,143 @@
-# Assignment 2 – Portfolio API (Node, Express, MongoDB)
+# Assignment 3
 
-**Student:** *Jasmine Sidhu*  
+**Student:** *Jasmine Sidhu 301320742*  
 **Course:** COMP229 – Web Application Development
 
-This repository contains the backend REST APIs for the Portfolio application using **Node.js**, **Express**, and **MongoDB (Mongoose)**, plus authentication with **JWT**.
+---
 
-## Getting Started
+##  Overview  
+This project is a **full-stack MERN portfolio website** that includes:
 
-1. Create `.env` from `.env.example` and set `MONGODB_URI` and `JWT_SECRET`.
-2. (Optional) Replace the `client/` placeholder with your Assignment 1 frontend.
-3. Install deps:
-   ```bash
-   npm install
-   ```
-4. Run concurrently (client + server):
-   ```bash
-   npm run dev
-   ```
-   - Backend: http://localhost:5000  
-   - Frontend: http://localhost:5173 (if Vite client exists)
+### Public Pages  
+- Home  
+- About  
+- Education  
+- Services  
+- Projects  
+- Contact Form  
 
-## API Base
+### Admin Portal (Protected)  
+- Admin Login / Signup  
+- Manage Projects  
+- Manage Qualifications  
+- View Contact Messages  
 
-- Base URL: `http://localhost:${PORT||5000}`
+Only authenticated **admin** users can access `/admin/*` routes.
 
-### Contacts
-- `GET /api/contacts`
-- `GET /api/contacts/:id`
-- `POST /api/contacts`
-- `PUT /api/contacts/:id`
-- `DELETE /api/contacts/:id`
-- `DELETE /api/contacts`
+---
 
-### Projects
-- `GET /api/projects`
-- `GET /api/projects/:id`
-- `POST /api/projects`
-- `PUT /api/projects/:id`
-- `DELETE /api/projects/:id`
-- `DELETE /api/projects`
+## Technologies Used  
+### **Frontend (React + Vite)**
+- React  
+- React Router  
+- Axios  
+- CSS / Custom Styling  
 
-### Qualifications
-- `GET /api/qualifications`
-- `GET /api/qualifications/:id`
-- `POST /api/qualifications`
-- `PUT /api/qualifications/:id`
-- `DELETE /api/qualifications/:id`
-- `DELETE /api/qualifications`
+### **Backend (Node.js + Express + MongoDB)**
+- Node.js  
+- Express  
+- Mongoose  
+- JWT Authentication  
+- MongoDB Atlas  
+- Helmet, CORS, Morgan  
 
-### Users
-- `GET /api/users`
-- `GET /api/users/:id`
-- `POST /api/users`
-- `PUT /api/users/:id`
-- `DELETE /api/users/:id`
-- `DELETE /api/users`
+---
 
-### Auth
-- `POST /api/auth/signup` – name, email, password
-- `POST /api/auth/signin` – email, password
-- `POST /api/auth/signout`
+## Project Structure  
+```
+Assignment2_JasmineSidhu-1/
+ ├── client/         (React frontend)
+ ├── server/         (Express backend)
+ ├── server.js       (API entry)
+ ├── .env
+ └── README.md
+```
 
-Use the returned `token` as `Authorization: Bearer <token>` for protected routes.
+---
 
-## Postman
-A Postman collection is provided under `postman/Assignment2_JasmineSidhu.postman_collection.json`.
+## How to Run the Application
+
+### **1. Install Dependencies**
+```
+cd Assignment2_JasmineSidhu-1
+npm install
+cd client
+npm install
+```
+
+### **2. Start Backend**
+```
+npm run server
+```
+Backend runs at:
+```
+http://localhost:5000
+```
+
+### **3. Start Frontend (in /client)**
+```
+npm run dev
+```
+Frontend runs at:
+```
+http://localhost:5173
+```
+
+---
+
+## Admin Credentials  
+You can create an admin using the signup page:  
+```
+http://localhost:5173/signup
+```
+Or manually insert into MongoDB.
+
+---
+
+## API Endpoints Summary  
+
+### **Auth**
+| Method | Route | Description |
+|------|--------|-------------|
+| POST | `/api/auth/signup` | Register admin |
+| POST | `/api/auth/signin` | Login |
+| POST | `/api/auth/signout` | Logout |
+
+### **Projects**
+| Method | Route |
+|------|--------|
+| GET | `/api/projects` |
+| POST | `/api/projects` |
+| PUT | `/api/projects/:id` |
+| DELETE | `/api/projects/:id` |
+
+### **Qualifications**
+| Method | Route |
+|------|--------|
+| GET | `/api/qualifications` |
+| POST | `/api/qualifications` |
+| PUT | `/api/qualifications/:id` |
+| DELETE | `/api/qualifications/:id` |
+
+### **Contact Messages**
+| Method | Route |
+|------|--------|
+| POST | `/api/contacts` |
+| GET | `/api/contacts` |
+
+---
+
+## Screenshots  
+
+1. **Home Page Loaded**
+2. **Admin Login Page**
+3. **Admin Dashboard**
+4. **Manage Projects Page**
+5. **Manage Qualifications Page**
+6. **Contact Messages Page (showing “No messages yet.” which is valid)**
+7. **MongoDB Cluster showing your collections**
+8. **Backend terminal showing "MongoDB Connected"**
+9. **Frontend terminal showing Vite running**
+
+---
+

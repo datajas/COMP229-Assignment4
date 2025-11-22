@@ -6,6 +6,14 @@ const userSchema = new mongoose.Schema(
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true, lowercase: true },
     password: { type: String, required: true },
+
+    // ONLY ONE ROLE FIELD — CLEAN & CORRECT
+    role: { 
+      type: String,
+      enum: ["admin", "user"],
+      default: "user"
+    },
+
     created: { type: Date, default: Date.now },
     updated: { type: Date }
   },

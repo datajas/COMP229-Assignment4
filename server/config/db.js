@@ -1,15 +1,20 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const connectDB = async () => {
-  const uri = process.env.MONGODB_URI;
-  if (!uri) {
-    throw new Error('MONGODB_URI not set. Please create a .env with MONGODB_URI.');
+  try {
+    await mongoose.connect(process.env.MONGODB_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+
+    console.log("🚀 MongoDB Connected Successfully");
+  } catch (error) {
+    console.error("❌ MongoDB Connection Error:", error);
+    process.exit(1);
   }
-  mongoose.set('strictQuery', true);
-  await mongoose.connect(uri, {
-    dbName: 'Portfolio'
-  });
-  console.log('✅ MongoDB connected:', mongoose.connection.host, 'DB:', mongoose.connection.name);
 };
 
 export default connectDB;
