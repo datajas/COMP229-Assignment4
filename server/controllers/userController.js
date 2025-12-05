@@ -1,8 +1,5 @@
 import User from '../models/User.js';
-
-// Generic helpers
-const notFound = (res, entity='Item') => res.status(404).json({ message: `${entity} not found` });
-const handleError = (res, error) => res.status(500).json({ message: error.message || 'Server error' });
+import { handleError, notFound } from '../utils/responses.js';
 
 export const getUsers = async (req, res) => {
   try {

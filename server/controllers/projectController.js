@@ -1,8 +1,5 @@
 import Project from '../models/Project.js';
-
-// Generic helpers
-const notFound = (res, entity='Item') => res.status(404).json({ message: `${entity} not found` });
-const handleError = (res, error) => res.status(500).json({ message: error.message || 'Server error' });
+import { handleError, notFound } from '../utils/responses.js';
 
 export const getProjects = async (req, res) => {
   try {

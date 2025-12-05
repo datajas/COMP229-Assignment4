@@ -1,9 +1,6 @@
-import jwt from 'jsonwebtoken';
-import User from '../models/User.js';
-
-// Generic helpers
-const notFound = (res, entity='Item') => res.status(404).json({ message: `${entity} not found` });
-const handleError = (res, error) => res.status(500).json({ message: error.message || 'Server error' });
+import jwt from "jsonwebtoken";
+import User from "../models/User.js";
+import { handleError } from "../utils/responses.js";
 
 const signToken = (userId) => {
   return jwt.sign({ id: userId }, process.env.JWT_SECRET || 'devsecret', { expiresIn: '7d' });
@@ -21,7 +18,7 @@ export const signup = async (req, res) => {
       name,
       email,
       password,
-      role: role || "user"   // ⭐ default to user
+      role: role || "user"  
     });
 
     const token = signToken(user._id);
@@ -43,11 +40,6 @@ export const signin = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    console.log("📩 SIGNIN ATTEMPT:");
-    console.log("Email received:", email);
-    console.log("Password received:", password);
-
-
     const user = await User.findOne({ email });
     if (!user) return res.status(401).json({ message: 'Invalid email or password' });
 
@@ -62,7 +54,7 @@ export const signin = async (req, res) => {
         id: user._id,
         name: user.name,
         email: user.email,
-        role: user.role    // ⭐ crucial
+        role: user.role 
       }
     });
   } catch (e) { handleError(res, e); }

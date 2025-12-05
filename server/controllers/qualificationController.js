@@ -1,11 +1,12 @@
 import Qualification from "../models/Qualification.js";
+import { handleError, notFound } from "../utils/responses.js";
 
 export const getQualifications = async (req, res) => {
   try {
     const list = await Qualification.find().sort({ year: -1 });
     res.json(list);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    handleError(res, err);
   }
 };
 
@@ -21,16 +22,20 @@ export const createQualification = async (req, res) => {
 
     res.status(201).json(newQual);
   } catch (err) {
-    console.error("Qualification Create Error:", err);
-    res.status(500).json({ message: err.message });
+        handleError(res, err);
   }
 };
 
 export const deleteQualification = async (req, res) => {
   try {
-    await Qualification.findByIdAndDelete(req.params.id);
+    const deleted = await Qualification.findByIdAndDelete(req.params.id);
+
+    if (!deleted) {
+      return notFound(res, "Qualification");
+    }
+
     res.json({ message: "Deleted" });
   } catch (err) {
-    res.status(500).json({ message: err.message });
+      handleError(res, err);
   }
 };
